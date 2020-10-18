@@ -8,9 +8,10 @@ public class Loader {
         Cat vasya = new Cat();
         Cat tomas = new Cat();
         Cat barsik = new Cat();
+        Cat leo = new Cat();
 
         //выводим список кошек
-        allStatus(murka, boris, vasya, tomas, barsik);
+        allStatus(murka, boris, vasya, tomas, barsik, leo);
 
         while (true) {
             //выводим меню действий
@@ -19,6 +20,8 @@ public class Loader {
                     "\n2 - Перекормить Ваську" +
                     "\n3 - Замяукать Тома" +
                     "\n4 - Напоить Барсика" +
+                    "\n5 - Сводить Барсика в туалет" +
+                    "\n6 - Покормить Леопольда и показать сколько всего он съел еды" +
                     "\n\n0 - Показать статус кошек");
 
             //получение действия от пользователя
@@ -54,27 +57,42 @@ public class Loader {
 
             //4 - Напоить Барсика
             if (answer == 4) {
-                barsik.drink(100.00);
+                barsik.drink(150.00);
 
                 System.out.println("Барсик напился:" +
                                     "\nБарсик, вес: " + barsik.getWeight());
             }
 
+            //5 - Сводить Барсика в туалет
+            if (answer == 5) {
+                barsik.pee();
+
+                System.out.println("Успешно, вес Барсика: " + barsik.getWeight());
+            }
+
+            //6 - Покормить Леопольда и показать сколько он съел еды
+            if (answer == 6) {
+                leo.feed(150.00);
+
+                System.out.println("Леопольд поел, вес еды: " + leo.amountOfFood());
+            }
+
             //0 - Показать статус кошек
             if (answer == 0) {
-                allStatus(murka, boris, vasya, tomas, barsik);
+                allStatus(murka, boris, vasya, tomas, barsik, leo);
             }
         }
     }
 
     //метод вывода статуса кошек
-    private static void allStatus(Cat murka, Cat boris, Cat vasya, Cat tomas, Cat barsik) {
+    private static void allStatus(Cat murka, Cat boris, Cat vasya, Cat tomas, Cat barsik, Cat leo) {
         System.out.println("Список подопытных:"
                 + "\nМурка, вес: " + murka.getWeight() + " " + murka.getStatus()
                 + "\nБорис, вес: " + boris.getWeight() + " " + boris.getStatus()
                 + "\nВаська, вес:" + vasya.getWeight() + " " + vasya.getStatus()
                 + "\nТом, вес: " + tomas.getWeight() + " " + tomas.getStatus()
-                + "\nБарсик, вес: " + barsik.getWeight() + " " + barsik.getStatus());
+                + "\nБарсик, вес: " + barsik.getWeight() + " " + barsik.getStatus()
+                + "\nЛеопольд, вес: " + leo.getWeight() + " " + leo.getStatus());
         System.out.println("\n=================================\n");
     }
 }
