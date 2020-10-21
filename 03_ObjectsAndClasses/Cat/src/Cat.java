@@ -9,6 +9,8 @@ public class Cat
 
     private double foodWeight;
 
+    private static int count;
+
     public Cat()
     {
         weight = 1500.0 + 3000.0 * Math.random();
@@ -26,7 +28,7 @@ public class Cat
 
     public void feed(Double amount)
     {
-        weight = weight + amount;
+            weight = weight + amount;
     }
 
     public void drink(Double amount)
@@ -42,9 +44,11 @@ public class Cat
     public String getStatus()
     {
         if(weight < minWeight) {
+            Cat.reduceCount();
             return "Dead";
         }
         else if(weight > maxWeight) {
+            Cat.reduceCount();
             return "Exploded";
         }
         else if(weight > originWeight) {
@@ -55,13 +59,31 @@ public class Cat
         }
     }
 
-    public Double amountOfFood() {
-        foodWeight = weight - originWeight;
-        return foodWeight;
+    //отобразить кол-во кошек
+    public static void getCount() {
+        System.out.println("Количество кошек: " + count);
     }
 
-    public void pee() {
-        weight = weight - 100.0;
-        System.out.println("Pee");
+    //счетчик кошек
+    //добавить кошку
+    public static void increaseCount() {
+        count++;
+    }
+
+    //убрать кошку
+    public static void reduceCount() {
+        count--;
+    }
+
+    //проверка наличия кошек
+    public static Boolean isCount() {
+        boolean response;
+        response = count > 0;
+        return response;
+    }
+
+    //вывод ошибки о наличии кошки
+    public void CatCreatedError() {
+        System.out.println("Кошка умерла или не создана!");
     }
 }

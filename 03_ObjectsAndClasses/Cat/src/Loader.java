@@ -2,97 +2,64 @@ import java.util.Scanner;
 
 public class Loader {
     public static void main(String[] args) {
-
-        Cat murka = new Cat();
-        Cat boris = new Cat();
-        Cat vasya = new Cat();
-        Cat tomas = new Cat();
-        Cat barsik = new Cat();
-        Cat leo = new Cat();
-
-        //выводим список кошек
-        allStatus(murka, boris, vasya, tomas, barsik, leo);
+        Cat cat = new Cat();
 
         while (true) {
-            //выводим меню действий
-            System.out.println("\nЧто делаем с кошками?" +
-                    "\n1 - Покормить Мурку и Бориса" +
-                    "\n2 - Перекормить Ваську" +
-                    "\n3 - Замяукать Тома" +
-                    "\n4 - Напоить Барсика" +
-                    "\n5 - Сводить Барсика в туалет" +
-                    "\n6 - Покормить Леопольда и показать сколько всего он съел еды" +
-                    "\n\n0 - Показать статус кошек");
+            //отобразить меню
+            System.out.println("Выберите действие:");
+            System.out.println("\n1 - Создать кошку" +
+                                "\n2 - Показать вес кошки" +
+                                "\n3 - Покормить кошку" +
+                                "\n4 - Напоить кошку" +
+                                "\n\n0 - Состояние кошки");
 
-            //получение действия от пользователя
-            int answer = (new Scanner(System.in)).nextInt();
+            //получение действия
+            int answer = new Scanner(System.in).nextInt();
 
-            //1 - Покормить Мурку и Бориса
+            //действия:
+            //1 - Создать кошку
             if (answer == 1) {
-                murka.feed(500.00);
-                boris.feed(700.00);
-
-                System.out.println("Кошки покормлены и потолстели:" +
-                                    "\nМурка, вес: " + murka.getWeight() +
-                                    "\nБорис, вес: " + boris.getWeight());
+                Cat.increaseCount();
+                Cat.getCount();
             }
 
-            //2 - Перекормить Ваську
+            //2 - Показать вес кошки
             if (answer == 2) {
-                while (!vasya.getStatus().equals("Exploded")) {
-                    vasya.feed(1000.00);
-
-                    System.out.println("Васька " + vasya.getStatus());
+                if (Cat.isCount()) {
+                    System.out.println("Вес кошки: " + cat.getWeight());
+                } else {
+                    cat.CatCreatedError();
                 }
             }
 
-            //3 - Замяукать Тома
+            //3 - Покормить кошку
             if (answer == 3) {
-                while (!tomas.getStatus().equals("Dead")) {
-                    tomas.meow();
-
-                    System.out.println("Том " + tomas.getStatus());
+                if (Cat.isCount()) {
+                    cat.feed(500.0);
+                    System.out.println("Кошка покормлена! " + cat.getStatus());
+                } else {
+                    cat.CatCreatedError();
                 }
             }
 
-            //4 - Напоить Барсика
+            //4 - Напоить кошку
             if (answer == 4) {
-                barsik.drink(150.00);
-
-                System.out.println("Барсик напился:" +
-                                    "\nБарсик, вес: " + barsik.getWeight());
+                if (Cat.isCount()) {
+                    cat.drink(200.0);
+                    System.out.println("Кошка напоена! " + cat.getStatus());
+                } else {
+                    cat.CatCreatedError();
+                }
             }
 
-            //5 - Сводить Барсика в туалет
-            if (answer == 5) {
-                barsik.pee();
-
-                System.out.println("Успешно, вес Барсика: " + barsik.getWeight());
-            }
-
-            //6 - Покормить Леопольда и показать сколько он съел еды
-            if (answer == 6) {
-                leo.feed(150.00);
-
-                System.out.println("Леопольд поел, вес еды: " + leo.amountOfFood());
-            }
-
-            //0 - Показать статус кошек
+            //0 - Состояние кошки
             if (answer == 0) {
-                allStatus(murka, boris, vasya, tomas, barsik, leo);
+                if (Cat.isCount()) {
+                    System.out.println(cat.getStatus());
+                } else {
+                    cat.CatCreatedError();
+                }
             }
         }
-    }
-
-    //метод вывода статуса кошек
-    private static void allStatus(Cat murka, Cat boris, Cat vasya, Cat tomas, Cat barsik, Cat leo) {
-        System.out.println("Список подопытных:"
-                + "\nМурка, вес: " + murka.getWeight() + " " + murka.getStatus()
-                + "\nБорис, вес: " + boris.getWeight() + " " + boris.getStatus()
-                + "\nВаська, вес:" + vasya.getWeight() + " " + vasya.getStatus()
-                + "\nТом, вес: " + tomas.getWeight() + " " + tomas.getStatus()
-                + "\nБарсик, вес: " + barsik.getWeight() + " " + barsik.getStatus()
-                + "\nЛеопольд, вес: " + leo.getWeight() + " " + leo.getStatus());
-        System.out.println("\n=================================\n");
     }
 }
