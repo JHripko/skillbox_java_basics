@@ -3,6 +3,7 @@ public class Cat
 {
     private double originWeight;
     private double weight;
+    private String name;
 
     private static double MIN_WEIGHT;
     private static double MAX_WEIGHT;
@@ -20,6 +21,15 @@ public class Cat
         MAX_WEIGHT = 9000.0;
         EYE_COUNT = 2;
 
+    }
+
+    public Cat(String name, double weight) {
+        this.name = name;
+        this.weight = weight;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public void setColor(Color color) {
