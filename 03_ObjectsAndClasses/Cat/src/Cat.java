@@ -4,6 +4,7 @@ public class Cat
     private double originWeight;
     private double weight;
     private String name;
+    private String color;
 
     private static double MIN_WEIGHT;
     private static double MAX_WEIGHT;
@@ -23,17 +24,19 @@ public class Cat
 
     }
 
-    public Cat(String name, double weight) {
+    //геттер цвета color
+    public String getColor() {
+        return color;
+    }
+
+    public void setKitten(String name, double weight, String color) {
         this.name = name;
         this.weight = weight;
+        this.color = color;
     }
 
     public String getName() {
         return name;
-    }
-
-    public void setColor(Color color) {
-
     }
 
     public void meow()

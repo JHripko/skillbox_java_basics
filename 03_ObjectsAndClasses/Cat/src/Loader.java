@@ -1,19 +1,21 @@
 
 public class Loader {
-
-    private static Cat getKitten(String name, double weight) {
-        Cat cat = new Cat(name, weight);
-        return cat;
-    }
+    public static Cat vasya = new Cat();
+    public static Cat murka = new Cat();
+    public static Cat boris = new Cat();
 
     public static void main(String[] args) {
-        Cat vasya = getKitten("Васька", 1100.0);
-        Cat murka = getKitten("Мурка", 1000.0);
-        Cat boris = getKitten("Борис", 1200.0);
+
+        vasya.setKitten("Васька", 1100.0, "Черный");
+        murka.setKitten("Мурка", 1000.0, "Белый");
+        boris.setKitten("Борис", 1200.0, "Рыжий");
 
         System.out.println("Список кошек:" +
-                            "\n" + vasya.getName() + ", весом: " + vasya.getWeight() +
-                            "\n" + murka.getName() + ", весом: " + murka.getWeight() +
-                            "\n" + boris.getName() + ", весом: " + boris.getWeight());
+                            "\n" + vasya.getName() + ", вес: " + vasya.getWeight()
+                                    + ", цвет: " + vasya.getColor() +
+                            "\n" + murka.getName() + ", вес: " + murka.getWeight()
+                                    + ", цвет: " + murka.getColor() +
+                            "\n" + boris.getName() + ", вес: " + boris.getWeight()
+                                    + ", цвет: " + boris.getColor());
     }
 }
