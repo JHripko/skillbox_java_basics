@@ -114,7 +114,6 @@ public class Loader {
                         }
 
                         System.out.println(cat.getStatus());
-                        Cat.reduceCount();
                     } else {
                         System.out.println("Кошка умерла или не создана!");
                     }
@@ -155,7 +154,7 @@ public class Loader {
         System.out.println("---Главное меню---" +
                 "\nВыберите букву для перехода к заданию" +
                 "\na - Задания к урокам 1-2" +
-                "\nb - Задания к уроку 3" +
+                "\nb - Задание к уроку 3" +
                 "");
     }
 
