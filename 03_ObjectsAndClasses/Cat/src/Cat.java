@@ -3,21 +3,23 @@ public class Cat {
     private double originWeight;
     private double weight;
 
-    private double minWeight;
-    private double maxWeight;
+    private double MIN_WEIGHT;
+    private double MAX_WEIGHT;
 
     private double foodWeight;
 
     private static int count;
+
+    private Color color;
 
     private boolean alive;
 
     public Cat() {
         weight = 1500.0 + 3000.0 * Math.random();
         originWeight = weight;
-        minWeight = 1000.0;
-        maxWeight = 9000.0;
-
+        MIN_WEIGHT = 1000.0;
+        MAX_WEIGHT = 9000.0;
+        color = Color.BLACK;
     }
 
     public void meow() {
@@ -38,10 +40,10 @@ public class Cat {
     }
 
     public String getStatus() {
-        if (weight < minWeight) {
+        if (weight < MIN_WEIGHT) {
             Cat.reduceCount();
             return "Dead";
-        } else if (weight > maxWeight) {
+        } else if (weight > MAX_WEIGHT) {
             Cat.reduceCount();
             return "Exploded";
         } else if (weight > originWeight) {
@@ -76,11 +78,17 @@ public class Cat {
         count--;
     }
 
+    //проверка жива ли кошка
     public boolean isAlive() {
-        if (weight > maxWeight || weight < minWeight) {
+        if (weight > MAX_WEIGHT || weight < MIN_WEIGHT) {
             alive = false;
         } else alive = true;
 
         return alive;
+    }
+
+    //получить цвет кошки
+    public Color getColor() {
+        return color;
     }
 }

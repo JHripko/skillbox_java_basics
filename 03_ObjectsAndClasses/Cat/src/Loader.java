@@ -134,6 +134,23 @@ public class Loader {
                     menu = "main";
                 }
             }
+
+            while (menu.equals("c")) {
+                thirdSelect();
+
+                //получение действия от пользователя
+                int answer = (new Scanner(System.in)).nextInt();
+
+                //1 - Создать кошку и показать ее цвет
+                if (answer == 1) {
+                    cat = new Cat();
+                    System.out.println("Кошка создана. Цвет кошки: " + cat.getColor());
+                }
+
+                if (answer == 0) {
+                    menu = "main";
+                }
+            }
         }
     }
 
@@ -155,7 +172,7 @@ public class Loader {
                 "\nВыберите букву для перехода к заданию" +
                 "\na - Задания к урокам 1-2" +
                 "\nb - Задание к уроку 3" +
-                "");
+                "\nc - Задание к уроку 4");
     }
 
     //Задания к урокам 1-2
@@ -181,6 +198,14 @@ public class Loader {
                 "\n1 - Создать кошку" +
                 "\n2 - Перекормить кошку (взорвать)" +
                 "\n3 - Напоить кошку" +
+
+                "\n\n0 - Выйти в главное меню");
+    }
+
+    //Задание к уроку 4
+    private static void thirdSelect() {
+        System.out.println("Задание к уроку 4:" +
+                "\n1 - Создать кошку и показать ее цвет" +
 
                 "\n\n0 - Выйти в главное меню");
     }
