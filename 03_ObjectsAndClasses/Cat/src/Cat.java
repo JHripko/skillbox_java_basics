@@ -14,12 +14,21 @@ public class Cat {
 
     private boolean alive;
 
+    private String name;
+
     public Cat() {
         weight = 1500.0 + 3000.0 * Math.random();
         originWeight = weight;
         MIN_WEIGHT = 1000.0;
         MAX_WEIGHT = 9000.0;
         color = Color.BLACK;
+    }
+
+    //дополнительный конструктор
+    public Cat(String name, double weight) {
+        this();
+        this.name = name;
+        this.weight = weight;
     }
 
     public void meow() {
@@ -90,5 +99,10 @@ public class Cat {
     //получить цвет кошки
     public Color getColor() {
         return color;
+    }
+
+    //получить имя кошки
+    public String getName() {
+        return name;
     }
 }

@@ -135,6 +135,7 @@ public class Loader {
                 }
             }
 
+            //вывод работы к уроку 4
             while (menu.equals("c")) {
                 thirdSelect();
 
@@ -145,6 +146,35 @@ public class Loader {
                 if (answer == 1) {
                     cat = new Cat();
                     System.out.println("Кошка создана. Цвет кошки: " + cat.getColor());
+                }
+
+                if (answer == 0) {
+                    menu = "main";
+                }
+            }
+
+            while (menu.equals("d")) {
+                fourthSelect();
+
+                //получение действия от пользователя
+                int answer = (new Scanner(System.in)).nextInt();
+
+                //1 - Создать кошку весом 1100.0
+                if (answer == 1) {
+                    Cat kitten = getKitten("Мурка", 1100.0);
+                    System.out.println("Кошка " + kitten.getName() + " создана. Вес: " + kitten.getWeight());
+                }
+
+                //2 - Создать трех кошек
+                if (answer == 2) {
+                    Cat kittenTom = getKitten("Том", 1500.0);
+                    Cat kittenBarsik = getKitten("Барсик", 2000.0);
+                    Cat kittenLeo = getKitten("Леопольд", 1500.0);
+
+                    System.out.println("Кошки созданы:" +
+                            "\n" + kittenTom.getName() + " вес: " + kittenTom.getWeight() +
+                            "\n" + kittenBarsik.getName() + " вес: " + kittenBarsik.getWeight() +
+                            "\n" + kittenLeo.getName() + " вес: " + kittenLeo.getWeight());
                 }
 
                 if (answer == 0) {
@@ -166,13 +196,20 @@ public class Loader {
         System.out.println("\n=================================\n");
     }
 
+    //метод генерации котенка
+    private static Cat getKitten(String name, double weight) {
+        Cat cat = new Cat(name, weight);
+        return cat;
+    }
+
     //Главное меню
     private static void mainMenu() {
         System.out.println("---Главное меню---" +
                 "\nВыберите букву для перехода к заданию" +
                 "\na - Задания к урокам 1-2" +
                 "\nb - Задание к уроку 3" +
-                "\nc - Задание к уроку 4");
+                "\nc - Задание к уроку 4" +
+                "\nd - Задание к уроку 5");
     }
 
     //Задания к урокам 1-2
@@ -206,6 +243,15 @@ public class Loader {
     private static void thirdSelect() {
         System.out.println("Задание к уроку 4:" +
                 "\n1 - Создать кошку и показать ее цвет" +
+
+                "\n\n0 - Выйти в главное меню");
+    }
+
+    //Задание к уроку 5
+    private static void fourthSelect() {
+        System.out.println("Задание к уроку 5:" +
+                "\n1 - Создать кошку, весом 1100.0" +
+                "\n2 - Создать трех кошек" +
 
                 "\n\n0 - Выйти в главное меню");
     }
