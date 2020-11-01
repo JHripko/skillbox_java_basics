@@ -153,6 +153,7 @@ public class Loader {
                 }
             }
 
+            //вывод работы к уроку 5
             while (menu.equals("d")) {
                 fourthSelect();
 
@@ -177,6 +178,30 @@ public class Loader {
                             "\n" + kittenLeo.getName() + " вес: " + kittenLeo.getWeight());
                 }
 
+                if (answer == 0) {
+                    menu = "main";
+                }
+            }
+
+            //вывод работы к уроку 6
+            while (menu.equals("e")) {
+                fifthSelect();
+
+                //получение действия от пользователя
+                int answer = (new Scanner(System.in)).nextInt();
+
+                //1 - Создать кошку и задать ей цвет
+                if (answer == 1) {
+                    cat = new Cat();
+                    cat.setColor(Color.WHITE);
+                }
+
+                //2 - Отобразить цвет кошки
+                if (answer == 2) {
+                    System.out.println("Цвет кошки: " + cat.getColor());
+                }
+
+                //0 - Выйти в главное меню
                 if (answer == 0) {
                     menu = "main";
                 }
@@ -209,7 +234,8 @@ public class Loader {
                 "\na - Задания к урокам 1-2" +
                 "\nb - Задание к уроку 3" +
                 "\nc - Задание к уроку 4" +
-                "\nd - Задание к уроку 5");
+                "\nd - Задание к уроку 5" +
+                "\ne - Задание к уроку 6");
     }
 
     //Задания к урокам 1-2
@@ -252,6 +278,15 @@ public class Loader {
         System.out.println("Задание к уроку 5:" +
                 "\n1 - Создать кошку, весом 1100.0" +
                 "\n2 - Создать трех кошек" +
+
+                "\n\n0 - Выйти в главное меню");
+    }
+
+    //Задание к уроку 6
+    private static void fifthSelect() {
+        System.out.println("Задание к уроку 6" +
+                "\n1 - Создать кошку и задать ей цвет" +
+                "\n2 - Отобразить цвет кошки" +
 
                 "\n\n0 - Выйти в главное меню");
     }

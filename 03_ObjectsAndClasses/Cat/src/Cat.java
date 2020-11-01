@@ -21,7 +21,7 @@ public class Cat {
         originWeight = weight;
         MIN_WEIGHT = 1000.0;
         MAX_WEIGHT = 9000.0;
-        color = Color.BLACK;
+        color = Color.GINGER;
     }
 
     //дополнительный конструктор
@@ -94,6 +94,11 @@ public class Cat {
         } else alive = true;
 
         return alive;
+    }
+
+    //задать цвет кошки
+    public void setColor (Color color) {
+        this.color = color;
     }
 
     //получить цвет кошки
