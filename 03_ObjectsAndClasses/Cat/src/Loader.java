@@ -206,6 +206,29 @@ public class Loader {
                     menu = "main";
                 }
             }
+
+            //вывод работы к уроку 7
+            while (menu.equals("f")) {
+                sixthSelect();
+
+                //получение действия от пользователя
+                int answer = (new Scanner(System.in)).nextInt();
+
+                //1 - Создать и показать клонированный объект
+                if (answer == 1) {
+                    leo.setName("Леопольд");
+                    setCopy(leo, cat);
+                }
+
+                if (answer == 2) {
+                    leo.setColor(Color.GINGER);
+                    setCopy(leo, cat);
+                }
+
+                if (answer == 0) {
+                    menu = "main";
+                }
+            }
         }
     }
 
@@ -227,6 +250,17 @@ public class Loader {
         return cat;
     }
 
+    //метод создания копии кошки
+    public static void setCopy(Cat origin, Cat copy) {
+        copy = new Cat(origin.getName(), origin.getWeight());
+
+        System.out.println("Исходная кошка:" +
+                "\n" + origin.getName() + ", вес: " + origin.getWeight() + ", цвет: " + origin.getColor() +
+
+                "\n\nКопия кошки:" +
+                "\n" + copy.getName() + ", вес: " + copy.getWeight() + ", цвет: " + origin.getColor());
+    }
+
     //Главное меню
     private static void mainMenu() {
         System.out.println("---Главное меню---" +
@@ -235,9 +269,11 @@ public class Loader {
                 "\nb - Задание к уроку 3" +
                 "\nc - Задание к уроку 4" +
                 "\nd - Задание к уроку 5" +
-                "\ne - Задание к уроку 6");
+                "\ne - Задание к уроку 6" +
+                "\nf - Задание к уроку 7");
     }
 
+    //Отображение содержимого подпунтктов меню
     //Задания к урокам 1-2
     private static void firstSelect() {
         System.out.println("Задания к урокам 1-2:" +
@@ -289,5 +325,14 @@ public class Loader {
                 "\n2 - Отобразить цвет кошки" +
 
                 "\n\n0 - Выйти в главное меню");
+    }
+
+    //Задание к уроку 7
+    private static void sixthSelect() {
+        System.out.println("Задание к уроку 7" +
+                "\n1 - Создать и показать скопированный объект" +
+                "\n2 - Поменять цвет исходной кошки и вывести объекты" +
+
+                "\n\n0 - Выход в главное меню");
     }
 }
