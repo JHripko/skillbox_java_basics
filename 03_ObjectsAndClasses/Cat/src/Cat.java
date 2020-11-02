@@ -3,7 +3,7 @@ public class Cat {
     private double originWeight;
     private double weight;
     private String name;
-    private String color;
+    private Color color;
 
     private double MIN_WEIGHT;
     private double MAX_WEIGHT;
@@ -12,11 +12,7 @@ public class Cat {
 
     private static int count;
 
-    private Color color;
-
     private boolean alive;
-
-    private String name;
 
     public Cat() {
         weight = 1500.0 + 3000.0 * Math.random();
@@ -87,6 +83,11 @@ public class Cat {
     //убрать кошку
     public static void reduceCount() {
         count--;
+    }
+
+    //сбросить счетчик
+    public static void resetCount() {
+        count = 0;
     }
 
     //проверка жива ли кошка

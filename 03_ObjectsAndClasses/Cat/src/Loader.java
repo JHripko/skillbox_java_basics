@@ -1,3 +1,4 @@
+import java.util.Scanner;
 
 public class Loader {
     public static void main(String[] args) {
@@ -87,6 +88,7 @@ public class Loader {
                 //Выйти в главное меню
                 if (answer == 0) {
                     menu = "main";
+                    Cat.resetCount();
                 }
             }
 
@@ -231,17 +233,15 @@ public class Loader {
         }
     }
 
-        vasya.setKitten("Васька", 1100.0, "Черный");
-        murka.setKitten("Мурка", 1000.0, "Белый");
-        boris.setKitten("Борис", 1200.0, "Рыжий");
-
-        System.out.println("Список кошек:" +
-                            "\n" + vasya.getName() + ", вес: " + vasya.getWeight()
-                                    + ", цвет: " + vasya.getColor() +
-                            "\n" + murka.getName() + ", вес: " + murka.getWeight()
-                                    + ", цвет: " + murka.getColor() +
-                            "\n" + boris.getName() + ", вес: " + boris.getWeight()
-                                    + ", цвет: " + boris.getColor());
+    //метод отображения списка кошек
+    public static void allStatus(Cat murka, Cat boris, Cat vasya, Cat tomas, Cat barsik, Cat leo) {
+        System.out.println("Список подопытных:" +
+                "\nМурка, вес: " + murka.getWeight() + " " + murka.getStatus() +
+                "\nБорис, вес :" + boris.getWeight() + " " + boris.getStatus() +
+                "\nВаська, вес: " + vasya.getWeight() + " " + vasya.getStatus() +
+                "\nТом, вес: " + tomas.getWeight() + " " + tomas.getStatus() +
+                "\nБарсик, вес: " + barsik.getWeight() + " " + tomas.getStatus() +
+                "\nЛеопольд, вес: " + leo.getStatus() + " " + leo.getStatus());
     }
 
     //метод генерации котенка
