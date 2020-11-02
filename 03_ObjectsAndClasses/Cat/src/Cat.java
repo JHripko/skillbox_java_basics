@@ -2,6 +2,8 @@
 public class Cat {
     private double originWeight;
     private double weight;
+    private String name;
+    private String color;
 
     private double MIN_WEIGHT;
     private double MAX_WEIGHT;

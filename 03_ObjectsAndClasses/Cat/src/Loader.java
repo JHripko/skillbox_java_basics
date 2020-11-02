@@ -1,4 +1,3 @@
-import java.util.Scanner;
 
 public class Loader {
     public static void main(String[] args) {
@@ -232,16 +231,17 @@ public class Loader {
         }
     }
 
-    //метод вывода статуса кошек
-    private static void allStatus(Cat murka, Cat boris, Cat vasya, Cat tomas, Cat barsik, Cat leo) {
-        System.out.println("Список подопытных:"
-                + "\nМурка, вес: " + murka.getWeight() + " " + murka.getStatus()
-                + "\nБорис, вес: " + boris.getWeight() + " " + boris.getStatus()
-                + "\nВаська, вес:" + vasya.getWeight() + " " + vasya.getStatus()
-                + "\nТом, вес: " + tomas.getWeight() + " " + tomas.getStatus()
-                + "\nБарсик, вес: " + barsik.getWeight() + " " + barsik.getStatus()
-                + "\nЛеопольд, вес: " + leo.getWeight() + " " + leo.getStatus());
-        System.out.println("\n=================================\n");
+        vasya.setKitten("Васька", 1100.0, "Черный");
+        murka.setKitten("Мурка", 1000.0, "Белый");
+        boris.setKitten("Борис", 1200.0, "Рыжий");
+
+        System.out.println("Список кошек:" +
+                            "\n" + vasya.getName() + ", вес: " + vasya.getWeight()
+                                    + ", цвет: " + vasya.getColor() +
+                            "\n" + murka.getName() + ", вес: " + murka.getWeight()
+                                    + ", цвет: " + murka.getColor() +
+                            "\n" + boris.getName() + ", вес: " + boris.getWeight()
+                                    + ", цвет: " + boris.getColor());
     }
 
     //метод генерации котенка
