@@ -5,21 +5,20 @@ public class Cat {
     private String name;
     private Color color;
 
-    private double MIN_WEIGHT;
-    private double MAX_WEIGHT;
+    private double MIN_WEIGHT = 1000.0;
+    private double MAX_WEIGHT = 9000.0;
 
     private double foodWeight;
 
     private static int count;
 
-    private boolean alive;
+    private boolean isAlive;
 
     public Cat() {
         weight = 1500.0 + 3000.0 * Math.random();
         originWeight = weight;
-        MIN_WEIGHT = 1000.0;
-        MAX_WEIGHT = 9000.0;
         color = Color.BLACK;
+        isAlive = true;
     }
 
     //дополнительный конструктор
@@ -34,8 +33,22 @@ public class Cat {
         System.out.println("Meow");
     }
 
+    //метод кормления
     public void feed(Double amount) {
-        weight = weight + amount;
+        if (isAlive) {
+            weight = weight + amount;
+            foodWeight = foodWeight + amount;
+            if (isWeightNormal()) {
+                System.out.println("Кот покормлен. Вес: " + getWeight() +
+                                    " " + getStatus());
+            } else {
+                count--;
+                isAlive = false;
+                System.out.println(getStatus());
+            }
+        } else {
+            System.out.println("Котик не может кушать :(");
+        }
     }
 
     public void drink(Double amount) {
@@ -48,10 +61,8 @@ public class Cat {
 
     public String getStatus() {
         if (weight < MIN_WEIGHT) {
-            Cat.reduceCount();
             return "Dead";
         } else if (weight > MAX_WEIGHT) {
-            Cat.reduceCount();
             return "Exploded";
         } else if (weight > originWeight) {
             return "Sleeping";
@@ -65,19 +76,14 @@ public class Cat {
         System.out.println("Pee");
     }
 
+    //метод подсчета веса съеденной еды
     public double weightOfFood() {
-        foodWeight = weight - originWeight;
         return foodWeight;
     }
 
     //отобразить кол-во кошек
     public static int getCount() {
         return count;
-    }
-
-    //добавить кошку
-    public static void increaseCount() {
-        count++;
     }
 
     //убрать кошку
@@ -90,13 +96,9 @@ public class Cat {
         count = 0;
     }
 
-    //проверка жива ли кошка
-    public boolean isAlive() {
-        if (weight > MAX_WEIGHT || weight < MIN_WEIGHT) {
-            alive = false;
-        } else alive = true;
-
-        return alive;
+    //проверка нормальный ли вес
+    public boolean isWeightNormal() {
+        return (weight > MIN_WEIGHT && weight < MAX_WEIGHT);
     }
 
     //задать цвет кошки
@@ -107,6 +109,11 @@ public class Cat {
     //получить цвет кошки
     public Color getColor() {
         return color;
+    }
+
+    //задать вес кошки
+    public void setWeight(double weight) {
+        this.weight = weight;
     }
 
     //задать имя кошки

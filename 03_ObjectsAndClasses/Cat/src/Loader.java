@@ -102,32 +102,18 @@ public class Loader {
                 //1 - Создать кошку
                 if (answer == 1) {
                     cat = new Cat();
-                    Cat.increaseCount();
+
                     System.out.println("Кошка создана. Вес кошки: " + cat.getWeight());
                 }
 
                 //2 - Перекормить кошку (взорвать)
                 if (answer == 2) {
-                    if (Cat.getCount() > 0 && cat.isAlive()) {
-                        while (cat.isAlive()) {
-                            cat.feed(1000.0);
-                            System.out.println("Вес: " + cat.getWeight());
-                        }
-
-                        System.out.println(cat.getStatus());
-                    } else {
-                        System.out.println("Кошка умерла или не создана!");
-                    }
+                    cat.feed(6000.0);
                 }
 
-                //3 - Напоить кошку
+                //3 - Накормить кошку на 100 грамм
                 if (answer == 3) {
-                    if (Cat.getCount() > 0 && cat.isAlive()) {
-                        cat.drink(200.0);
-                        System.out.println("Кошка напилась, вес: " + cat.getWeight());
-                    } else {
-                        System.out.println("Кошка умерла или не создана!");
-                    }
+                    cat.feed(100.0);
                 }
 
                 //0 - Выйти в главное меню
@@ -217,15 +203,30 @@ public class Loader {
 
                 //1 - Создать и показать клонированный объект
                 if (answer == 1) {
-                    leo.setName("Леопольд");
                     setCopy(leo, cat);
+                    System.out.println("Оригинал:" +
+                            "\n" + leo.getName() + ", вес: " + leo.getWeight() +
+                            ", цвет: " + leo.getColor() +
+
+                            "\n\nКопия:" +
+                            "\n" + cat.getName() + ", вес: " + cat.getWeight() +
+                            ", цвет: " + cat.getColor());
                 }
 
+                //Поменять цвет исходной кошки и вывести объекты
                 if (answer == 2) {
                     leo.setColor(Color.GINGER);
                     setCopy(leo, cat);
+                    System.out.println("Оригинал:" +
+                            "\n" + leo.getName() + ", вес: " + leo.getWeight() +
+                            ", цвет: " + leo.getColor() +
+
+                            "\n\nКопия:" +
+                            "\n" + cat.getName() + ", вес: " + cat.getWeight() +
+                            ", цвет: " + cat.getColor());
                 }
 
+                //Выход в главное меню
                 if (answer == 0) {
                     menu = "main";
                 }
@@ -251,14 +252,12 @@ public class Loader {
     }
 
     //метод создания копии кошки
-    public static void setCopy(Cat origin, Cat copy) {
-        copy = new Cat(origin.getName(), origin.getWeight());
-
-        System.out.println("Исходная кошка:" +
-                "\n" + origin.getName() + ", вес: " + origin.getWeight() + ", цвет: " + origin.getColor() +
-
-                "\n\nКопия кошки:" +
-                "\n" + copy.getName() + ", вес: " + copy.getWeight() + ", цвет: " + origin.getColor());
+    public static Cat setCopy(Cat origin, Cat copy) {
+        origin.setName("Лео");
+        copy.setName("Гарфилд");
+        copy.setWeight(origin.getWeight());
+        copy.setColor(origin.getColor());
+        return copy;
     }
 
     //Главное меню
@@ -296,7 +295,7 @@ public class Loader {
                 "\nКол-во кошек: " + Cat.getCount() +
                 "\n1 - Создать кошку" +
                 "\n2 - Перекормить кошку (взорвать)" +
-                "\n3 - Напоить кошку" +
+                "\n3 - Накормить кошку на 100 грамм" +
 
                 "\n\n0 - Выйти в главное меню");
     }
