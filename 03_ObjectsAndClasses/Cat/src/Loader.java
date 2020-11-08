@@ -102,7 +102,7 @@ public class Loader {
                 //1 - Создать кошку
                 if (answer == 1) {
                     cat = new Cat();
-
+                    Cat.setCount();
                     System.out.println("Кошка создана. Вес кошки: " + cat.getWeight());
                 }
 

@@ -42,9 +42,7 @@ public class Cat {
                 System.out.println("Кот покормлен. Вес: " + getWeight() +
                                     " " + getStatus());
             } else {
-                count--;
-                isAlive = false;
-                System.out.println(getStatus());
+                getBadNews();
             }
         } else {
             System.out.println("Котик не может кушать :(");
@@ -52,7 +50,17 @@ public class Cat {
     }
 
     public void drink(Double amount) {
-        weight = weight + amount;
+        if (isAlive) {
+            weight = weight + amount;
+            if (isWeightNormal()) {
+                System.out.println("Кот напился. Вес: " + getWeight() +
+                                    " " + getStatus());
+            } else {
+                getBadNews();
+            }
+        } else {
+            System.out.println("Котик не может пить :(");
+        }
     }
 
     public Double getWeight() {
@@ -76,6 +84,13 @@ public class Cat {
         System.out.println("Pee");
     }
 
+    //метод отображения статуса кота, если он умер или не может пить/есть
+    public void getBadNews() {
+        count--;
+        isAlive = false;
+        System.out.println(getStatus());
+    }
+
     //метод подсчета веса съеденной еды
     public double weightOfFood() {
         return foodWeight;
@@ -86,9 +101,10 @@ public class Cat {
         return count;
     }
 
-    //убрать кошку
-    public static void reduceCount() {
-        count--;
+    //добавить кошку
+    public static int setCount() {
+        count++;
+        return count;
     }
 
     //сбросить счетчик
