@@ -203,27 +203,30 @@ public class Loader {
 
                 //1 - Создать и показать клонированный объект
                 if (answer == 1) {
-                    setCopy(leo, cat);
+                    leo.setName("Лео");
+                    Cat copy = setCopy(leo);
+                    copy.setName("Копия Лео");
                     System.out.println("Оригинал:" +
                             "\n" + leo.getName() + ", вес: " + leo.getWeight() +
                             ", цвет: " + leo.getColor() +
 
                             "\n\nКопия:" +
-                            "\n" + cat.getName() + ", вес: " + cat.getWeight() +
-                            ", цвет: " + cat.getColor());
+                            "\n" + copy.getName() + ", вес: " + copy.getWeight() +
+                            ", цвет: " + copy.getColor());
                 }
 
                 //Поменять цвет исходной кошки и вывести объекты
                 if (answer == 2) {
                     leo.setColor(Color.GINGER);
-                    setCopy(leo, cat);
+                    Cat copy = setCopy(leo);
+                    copy.setName("Копия Лео");
                     System.out.println("Оригинал:" +
                             "\n" + leo.getName() + ", вес: " + leo.getWeight() +
                             ", цвет: " + leo.getColor() +
 
                             "\n\nКопия:" +
-                            "\n" + cat.getName() + ", вес: " + cat.getWeight() +
-                            ", цвет: " + cat.getColor());
+                            "\n" + copy.getName() + ", вес: " + copy.getWeight() +
+                            ", цвет: " + copy.getColor());
                 }
 
                 //Выход в главное меню
@@ -252,9 +255,8 @@ public class Loader {
     }
 
     //метод создания копии кошки
-    public static Cat setCopy(Cat origin, Cat copy) {
-        origin.setName("Лео");
-        copy.setName("Гарфилд");
+    public static Cat setCopy(Cat origin) {
+        Cat copy = new Cat();
         copy.setWeight(origin.getWeight());
         copy.setColor(origin.getColor());
         return copy;
