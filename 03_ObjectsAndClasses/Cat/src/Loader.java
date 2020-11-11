@@ -34,10 +34,6 @@ public class Loader {
                 if (answer == 1) {
                     murka.feed(500.00);
                     boris.feed(700.00);
-
-                    System.out.println("Кошки покормлены и потолстели:" +
-                            "\nМурка, вес: " + murka.getWeight() +
-                            "\nБорис, вес: " + boris.getWeight());
                 }
 
                 //2 - Перекормить Ваську
@@ -47,6 +43,9 @@ public class Loader {
 
                         System.out.println("Васька " + vasya.getStatus());
                     }
+                    if (!vasya.isWeightNormal()) {
+                        System.out.println("Котик перекормлен :(");
+                    }
                 }
 
                 //3 - Замяукать Тома
@@ -55,6 +54,9 @@ public class Loader {
                         tomas.meow();
 
                         System.out.println("Том " + tomas.getStatus());
+                    }
+                    if (!tomas.isWeightNormal()) {
+                        System.out.println("Том намяукался :(");
                     }
                 }
 

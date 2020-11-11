@@ -29,8 +29,17 @@ public class Cat {
     }
 
     public void meow() {
-        weight = weight - 1;
-        System.out.println("Meow");
+        if (isAlive) {
+            weight = weight - 1;
+            if (isWeightNormal()) {
+                System.out.println("Meow");
+                System.out.println(getWeight());
+            } else {
+                getBadNews();
+            }
+        } else {
+            System.out.println("Котик не может мяукать :(");
+        }
     }
 
     //метод кормления
@@ -80,8 +89,17 @@ public class Cat {
     }
 
     public void pee() {
-        weight = weight - 100.0;
-        System.out.println("Pee");
+        if (isAlive) {
+            weight = weight - 100.0;
+            if (isWeightNormal()) {
+                System.out.println("Pee");
+                System.out.println(getWeight());
+            } else {
+                getBadNews();
+            }
+        } else {
+            System.out.println("Котик не может ходить в туалет :(");
+        }
     }
 
     //метод отображения статуса кота, если он умер или не может пить/есть
