@@ -20,11 +20,14 @@ public class Main {
    */
 
   public static int sumDigits(Integer number) {
-    //@TODO: write code here and delete TODO line
-    String str = Integer.toString(number);
     int num = 0;
-    for (int i = 0; i < str.length(); i++) {
-      num += Integer.parseInt(String.valueOf(str.charAt(i)));
+    if (number == null) {
+      num = -1;
+    } else {
+      String str = Integer.toString(number);
+      for (int i = 0; i < str.length(); i++) {
+        num += Integer.parseInt(String.valueOf(str.charAt(i)));
+      }
     }
     return num;
   }
