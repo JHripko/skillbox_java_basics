@@ -1,8 +1,18 @@
 public class Main {
     public static void main(String[] args) {
-        for (char i = 'a'; i <= 'z'; i++) {
-            int code = i;
-            System.out.println(i + " code: " + code);
+
+        System.out.println("Ангийский алфавит:");
+        for (char i = 'A', j = 'a'; i <= 'Z' && j <= 'z'; i++, j++) {
+            int uppercaseCode = i;
+            int lowercaseCode = j;
+            System.out.println(i + " code: " + uppercaseCode + "\t" + j + " code: " + lowercaseCode);
+        }
+
+        System.out.println("\nРусский алфавит:");
+        for (char i = 'А', j = 'а'; i <= 'Я' && j <= 'я'; i++, j++) {
+            int uppercaseCode = i;
+            int lowercaseCode = j;
+            System.out.println(i + " code: " + uppercaseCode + "\t" + j + " code: " + lowercaseCode);
         }
     }
 }
