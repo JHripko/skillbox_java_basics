@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class Main {
 
-    private static final String FORMAT_ERROR = "Неверный формат номера";
+    private static final String FORMAT_ERROR = "Неверный формат номера";    //константа со строкой сообщения об ошибке
 
     public static void main(String[] args) {
 
