@@ -69,10 +69,11 @@ public class PhoneBook {
         //если myPhoneBook содержит имя, которое ввел пользователь - вывести его номера телефонов
         if (myPhoneBook.containsKey(name)) {
             phonesList += myPhoneBook.get(name).toString();
+            //формируем строку с номерами телефона (убираем квадратные скобки)
+            phonesList = phonesList.substring(1, phonesList.length() - 1);
+            phones.add(name + " - " + phonesList);
         }
-        //форматируем строку с номерами телефона (убираем квадратные скобки)
-        phonesList = phonesList.substring(1, phonesList.length() - 1);
-        phones.add(name + " - " + phonesList);
+
         return phones;
     }
 

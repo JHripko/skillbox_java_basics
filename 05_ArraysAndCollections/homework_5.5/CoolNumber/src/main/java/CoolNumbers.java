@@ -1,11 +1,9 @@
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.TreeSet;
+import java.util.*;
 
 public class CoolNumbers {
 
     public static List<String> generateCoolNumbers() {
+
         return Collections.emptyList();
     }
 
