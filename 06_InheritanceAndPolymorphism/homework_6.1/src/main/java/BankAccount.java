@@ -1,15 +1,40 @@
 public class BankAccount {
 
-  public double getAmount() {
-    //TODO: реализуйте метод и удалите todo
-    return 0;
-  }
+    public double balance;
 
-  public void put(double amountToPut) {
-    //TODO: реализуйте метод и удалите todo
-  }
+    public double getAmount() {
 
-  public void take(double amountToTake) {
-    //TODO: реализуйте метод и удалите todo
-  }
+        return balance;
+    }
+
+    public void put(double amountToPut) {
+        if (amountToPut < 0) {
+            getNegativeAmountError();
+        } else {
+            balance += amountToPut;
+        }
+    }
+
+    public void take(double amountToTake) {
+        if (amountToTake > balance) {
+            getMoreAmountError();
+        } else {
+            if (amountToTake < 0) {
+                getNegativeAmountError();
+            } else {
+                balance -= amountToTake;
+            }
+        }
+    }
+
+    //дополнительные методы
+    //ошибка отрицательной суммы
+    public static void getNegativeAmountError() {
+        System.out.println("Нельзя положить отрицательную сумму!\n");
+    }
+
+    //ошибка списание суммы больше чем на счете
+    public static void getMoreAmountError() {
+        System.out.println("Сумма списания больше суммы на счете!\n");
+    }
 }
