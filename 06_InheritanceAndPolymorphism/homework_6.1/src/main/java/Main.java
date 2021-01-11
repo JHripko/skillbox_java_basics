@@ -19,6 +19,7 @@ public class Main {
         }
     }
 
+
     //дополнительные методы
     //отображение главного меню
     public static void mainMenuView() {
@@ -47,6 +48,7 @@ public class Main {
         System.out.println("3 - Перевод с депозитного счета на основной счет");
         System.out.println("\n0 - Назад");
     }
+
 
     //навигация по главному меню
     public static void mainMenuNavigation(String menuItem) {
