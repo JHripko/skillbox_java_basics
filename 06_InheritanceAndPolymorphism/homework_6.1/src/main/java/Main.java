@@ -133,13 +133,7 @@ public class Main {
         Scanner in = new Scanner(System.in);
         double amountToCard = Double.parseDouble(in.next());
 
-        if (amountToCard <= bankAccount.balance) {
-            bankAccount.take(amountToCard);
-            cardAccount.put(amountToCard);
-
-        } else {
-            System.out.println("Сумма списания больше суммы на счете!\n");
-        }
+        bankAccount.send(cardAccount, amountToCard);
     }
 
     //перевод с основного счета на депозитный счет
@@ -150,14 +144,7 @@ public class Main {
         Scanner in = new Scanner(System.in);
         double amountToDeposit = Double.parseDouble(in.next());
 
-        if (amountToDeposit <= bankAccount.balance) {
-            bankAccount.take(amountToDeposit);
-            depositAccount.put(amountToDeposit);
-
-            System.out.println("Операция выполнена!\n");
-        } else {
-            System.out.println("Сумма списания больше суммы на счете!\n");
-        }
+        bankAccount.send(depositAccount, amountToDeposit);
     }
 
     //перевод с депозитного счета на основной счет
@@ -168,13 +155,11 @@ public class Main {
         Scanner in = new Scanner(System.in);
         double amountToBank = Double.parseDouble(in.next());
 
-        if (amountToBank <= depositAccount.depositBalance) {
-            depositAccount.take(amountToBank);
-        }
+        depositAccount.send(bankAccount, amountToBank);
     }
 
 
-    //ошибка
+    //ошибка команды
     public static void getError() {
         System.out.println("Команда не распознана!\n");
     }
