@@ -1,13 +1,13 @@
 public class BankAccount {
 
-    public double balance;
+    protected double balance;
 
-    public double getAmount() {
+    protected double getAmount() {
 
         return balance;
     }
 
-    public void put(double amountToPut) {
+    protected void put(double amountToPut) {
         //если сумма пополнения отрицательная - вывести ошибку
         if (amountToPut < 0) {
             getNegativeAmountError();
@@ -18,7 +18,7 @@ public class BankAccount {
         }
     }
 
-    public void take(double amountToTake) {
+    protected void take(double amountToTake) {
         //если сумма списания больше чем сумма на счете - вывести ошибку
         if (amountToTake > balance) {
             getMoreAmountError();
@@ -34,7 +34,7 @@ public class BankAccount {
     }
 
     //перевод между счетами
-    public boolean send(BankAccount receiver, double amount) {
+    protected boolean send(BankAccount receiver, double amount) {
         if (amount <= balance) {
 
             if (amount > 0) {
@@ -59,16 +59,16 @@ public class BankAccount {
 
     //дополнительные методы
     //сообщение об успешной операции
-    public void getSuccess() {
+    protected void getSuccess() {
         System.out.println("Операция выполнена!\n");
     }
     //ошибка отрицательной суммы
-    public static void getNegativeAmountError() {
+    protected static void getNegativeAmountError() {
         System.out.println("Нельзя положить отрицательную сумму!\n");
     }
 
     //ошибка списание суммы больше чем на счете
-    public static void getMoreAmountError() {
+    protected static void getMoreAmountError() {
         System.out.println("Сумма списания больше суммы на счете!\n");
     }
 }

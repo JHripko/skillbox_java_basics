@@ -4,22 +4,23 @@ import java.util.Calendar;
 
 public class DepositAccount extends BankAccount {
 
-    public double depositBalance;
-    public Calendar lastIncome = Calendar.getInstance();            //дата последнего пополнения
-    public Calendar dateOfWithdraw = Calendar.getInstance();        //дата когда возможно списание с депозита
-    boolean isDateToWithdraw = true;                                /*вспомогательная переменная возможности списания
+    protected double depositBalance;
+    private Calendar lastIncome = Calendar.getInstance();            //дата последнего пополнения
+    private Calendar dateOfWithdraw = Calendar.getInstance();        //дата когда возможно списание с депозита
+    private boolean isDateToWithdraw = true;                                /*вспомогательная переменная возможности списания
                                                                     с депозита */
 
     //формат даты для отображения в сообщении
     DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
 
     @Override
-    public double getAmount() {
+    protected double getAmount() {
         this.balance = depositBalance;
         return super.getAmount();
     }
 
-    public void put(double amountToPut) {
+    @Override
+    protected void put(double amountToPut) {
 
         if (amountToPut > 0) {
             //обновляем текущую дату внесения средств на депозитный счет
@@ -38,7 +39,8 @@ public class DepositAccount extends BankAccount {
         }
     }
 
-    public void take(double amountToTake) {
+    @Override
+    protected void take(double amountToTake) {
 
         if (amountToTake <= depositBalance) {
             if (amountToTake >= 0) {
@@ -59,7 +61,8 @@ public class DepositAccount extends BankAccount {
         }
     }
 
-    public boolean send(BankAccount receiver, double amount) {
+    @Override
+    protected boolean send(BankAccount receiver, double amount) {
         this.balance = depositBalance;
         if (isDateToWithdraw) {
             return super.send(receiver, amount);
@@ -71,19 +74,15 @@ public class DepositAccount extends BankAccount {
 
     //дополнительные методы
     //проверка возможности списания
-    public boolean isPossibleToWithdraw(Calendar now, Calendar dateOfWithdraw) {
+    private boolean isPossibleToWithdraw(Calendar now, Calendar dateOfWithdraw) {
         //если пытаемся списать средства после возможной даты списания то разрешаем списания средств
-        if (now.after(dateOfWithdraw)) {
-            isDateToWithdraw = true;
-        } else {
-            isDateToWithdraw = false;
-        }
+        isDateToWithdraw = now.after(dateOfWithdraw);
 
         return isDateToWithdraw;
     }
 
     //ошибка невозможности списания
-    public void getDateOfWithdrawError() {
+    private void getDateOfWithdrawError() {
         System.out.println("Списание средств с депозитного счета в текущем месяце невозможно!");
         System.out.println("Дата последнего пополнения: " + dateFormat.format(lastIncome.getTime()) + " г.");
         System.out.println("Списание средств будет доступно не раньше " + dateFormat.format(dateOfWithdraw.getTime()) + " г.");

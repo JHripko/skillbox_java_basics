@@ -1,21 +1,23 @@
 public class CardAccount extends BankAccount {
 
-    public double cardBalance;
+    protected double cardBalance;
 
     @Override
-    public double getAmount() {
+    protected double getAmount() {
 
         this.balance = cardBalance;
         return super.getAmount();
     }
 
-    public void put(double amountToPut) {
+    @Override
+    protected void put(double amountToPut) {
 
         super.put(amountToPut);
         cardBalance = balance;
     }
 
-    public void take(double amountToTake) {
+    @Override
+    protected void take(double amountToTake) {
 
         if (amountToTake > this.cardBalance) {
             getMoreAmountError();

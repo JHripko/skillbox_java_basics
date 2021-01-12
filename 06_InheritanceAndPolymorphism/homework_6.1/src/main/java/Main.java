@@ -2,11 +2,11 @@ import java.util.Scanner;
 
 public class Main {
 
-    public static boolean program = true;
+    private static boolean program = true;
 
-    public static BankAccount bankAccount = new BankAccount();
-    public static CardAccount cardAccount = new CardAccount();
-    public static DepositAccount depositAccount = new DepositAccount();
+    protected static BankAccount bankAccount = new BankAccount();
+    protected static CardAccount cardAccount = new CardAccount();
+    protected static DepositAccount depositAccount = new DepositAccount();
 
     public static void main(String[] args) {
 
@@ -22,7 +22,7 @@ public class Main {
 
     //дополнительные методы
     //отображение главного меню
-    public static void mainMenuView() {
+    private static void mainMenuView() {
         System.out.println("Главное меню:");
         System.out.println("1 - Состояние счета");
         System.out.println("2 - Пополнить счет");
@@ -32,7 +32,7 @@ public class Main {
     }
 
     //отображение меню состояния счета
-    public static void balanceStateView() {
+    private static void balanceStateView() {
         System.out.println("Состояние счета:");
         System.out.println("Общий счет: " + bankAccount.getAmount() + " RUB");
         System.out.println("Счет карты: " + cardAccount.getAmount() + " RUB");
@@ -41,7 +41,7 @@ public class Main {
     }
 
     //отображение меню перевода между счетами
-    public static void transferMenuView() {
+    private static void transferMenuView() {
         System.out.println("Перевод между счетами:");
         System.out.println("1 - Перевод с основного счета на карту");
         System.out.println("2 - Перевод с основного счета на депозитный счет");
@@ -51,7 +51,7 @@ public class Main {
 
 
     //навигация по главному меню
-    public static void mainMenuNavigation(String menuItem) {
+    private static void mainMenuNavigation(String menuItem) {
         switch (menuItem) {
             case "1":
                 balanceStateView();
@@ -81,7 +81,7 @@ public class Main {
     }
 
     //пополнение счета
-    public static void putMoney() {
+    private static void putMoney() {
         System.out.print("Введите сумму: ");
         Scanner input = new Scanner(System.in);
         double amountToPut = Double.parseDouble(input.next());
@@ -90,7 +90,7 @@ public class Main {
     }
 
     //снятие наличных
-    public static void takeCash() {
+    private static void takeCash() {
         System.out.print("Введите сумму списания: ");
         Scanner input = new Scanner(System.in);
         double amountToPut = Double.parseDouble(input.next());
@@ -99,7 +99,7 @@ public class Main {
     }
 
     //перевод между счетами
-    public static void transferNavigation() {
+    private static void transferNavigation() {
 
         Scanner in  = new Scanner(System.in);
         String submenuItem = in.next();
@@ -126,7 +126,7 @@ public class Main {
     }
 
     //перевод с основного счета на карту
-    public static void bankToCardTransfer() {
+    private static void bankToCardTransfer() {
         System.out.println("Перевод с основного счета на карту:");
         System.out.print("Сумма перевода: ");
 
@@ -137,7 +137,7 @@ public class Main {
     }
 
     //перевод с основного счета на депозитный счет
-    public static void bankToDepositTransfer() {
+    private static void bankToDepositTransfer() {
         System.out.println("Перевод с основного счета на депозитный счет:");
         System.out.print("Сумма перевода: ");
 
@@ -148,7 +148,7 @@ public class Main {
     }
 
     //перевод с депозитного счета на основной счет
-    public static void depositToBankTransfer() {
+    private static void depositToBankTransfer() {
         System.out.println("Перевод с депозитного счета на основной счет:");
         System.out.print("Сумма перевода: ");
 
@@ -160,7 +160,7 @@ public class Main {
 
 
     //ошибка команды
-    public static void getError() {
+    private static void getError() {
         System.out.println("Команда не распознана!\n");
     }
 }
