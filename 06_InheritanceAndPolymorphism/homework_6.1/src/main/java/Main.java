@@ -4,9 +4,9 @@ public class Main {
 
     private static boolean program = true;
 
-    protected static BankAccount bankAccount = new BankAccount();
-    protected static CardAccount cardAccount = new CardAccount();
-    protected static DepositAccount depositAccount = new DepositAccount();
+    private static BankAccount bankAccount = new BankAccount();
+    private static CardAccount cardAccount = new CardAccount();
+    private static DepositAccount depositAccount = new DepositAccount();
 
     public static void main(String[] args) {
 
