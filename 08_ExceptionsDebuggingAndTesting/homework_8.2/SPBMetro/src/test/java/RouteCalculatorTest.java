@@ -28,9 +28,9 @@ public class RouteCalculatorTest extends TestCase {
         stationIndex = new StationIndex();
 
         //линии
-        line1 = new Line(1, "Первая");
-        line2 = new Line(2, "Вторая");
-        line3 = new Line(3, "Третья");
+        line1 = new Line(1, "Первая линия");
+        line2 = new Line(2, "Вторая линия");
+        line3 = new Line(3, "Третья линия");
 
         //станции
         station1 = new Station("Первая", line1);
