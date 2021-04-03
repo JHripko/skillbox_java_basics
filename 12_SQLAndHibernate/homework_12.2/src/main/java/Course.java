@@ -1,31 +1,30 @@
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "Courses")
 public class Course {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private String name;
 
-    @Enumerated(EnumType.STRING)
-    @Column(columnDefinition = "enum")
     private CourseType type;
 
     private String description;
 
-    @Column(name = "teacher_id")
-    private int teacherId;
+    private Teacher teacher;
 
-    @Column(name = "students_count")
     private Integer studentsCount;
 
     private int price;
 
-    @Column(name = "price_per_hour")
     private float pricePerHour;
 
+    private List<Student> students;
+
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getId() {
         return id;
     }
@@ -34,6 +33,7 @@ public class Course {
         this.id = id;
     }
 
+    @Column(name = "name")
     public String getName() {
         return name;
     }
@@ -42,6 +42,8 @@ public class Course {
         this.name = name;
     }
 
+    @Enumerated(EnumType.STRING)
+    @Column(columnDefinition = "enum")
     public CourseType getType() {
         return type;
     }
@@ -50,6 +52,7 @@ public class Course {
         this.type = type;
     }
 
+    @Column(name = "description")
     public String getDescription() {
         return description;
     }
@@ -58,14 +61,16 @@ public class Course {
         this.description = description;
     }
 
-    public int getTeacherId() {
-        return teacherId;
+    @ManyToOne(cascade = CascadeType.ALL)
+    public Teacher getTeacher() {
+        return teacher;
     }
 
-    public void setTeacherId(int teacherId) {
-        this.teacherId = teacherId;
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
     }
 
+    @Column(name = "students_count")
     public int getStudentsCount() {
         return studentsCount;
     }
@@ -74,6 +79,7 @@ public class Course {
         this.studentsCount = studentsCount;
     }
 
+    @Column(name = "price")
     public int getPrice() {
         return price;
     }
@@ -82,11 +88,25 @@ public class Course {
         this.price = price;
     }
 
+    @Column(name = "price_per_hour")
     public float getPricePerHour() {
         return pricePerHour;
     }
 
     public void setPricePerHour(float pricePerHour) {
         this.pricePerHour = pricePerHour;
+    }
+
+    @ManyToMany
+    @JoinTable(name = "Subscriptions",
+    joinColumns = {@JoinColumn(name = "course_id")},
+    inverseJoinColumns = {@JoinColumn(name = "student_id")}
+    )
+    public List<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(List<Student> students) {
+        this.students = students;
     }
 }

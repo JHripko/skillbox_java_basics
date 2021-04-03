@@ -1,5 +1,6 @@
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.boot.Metadata;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
@@ -14,13 +15,17 @@ public class Main {
         SessionFactory sessionFactory = metadata.getSessionFactoryBuilder().build();
 
         Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
 
-        //отображение списка курсов и кол-ва студентов по каждому
-        List<Course> courseList = (List<Course>) session.createQuery("from Course").list();
+        //отображаем список курсов для определенного студента
+        Student student = session.get(Student.class, 1);
+        List<Course> courseList = student.getCourses();
+
         for (Course course : courseList) {
-            System.out.println(course.getName() + "\tкол-во студентов: " + course.getStudentsCount() + " человек");
+            System.out.println(course.getName());
         }
 
+        transaction.commit();
         sessionFactory.close();
     }
 }
