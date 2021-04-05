@@ -61,7 +61,8 @@ public class Course {
         this.description = description;
     }
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
+    @JoinColumn(name = "teacher_id")
     public Teacher getTeacher() {
         return teacher;
     }
