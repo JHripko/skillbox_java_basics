@@ -38,11 +38,19 @@ public class Main {
         List<Student> studentList = session.createQuery(query).getResultList();
         for (Student student : studentList) {
             List<Course> courseList = student.getCourses();
+//            for (Course course : courseList) {
+//                Subscription subscription = session.get(Subscription.class, new SubscriptionKey(student.getId(), course.getId()));
+//                System.out.println("student_id: " + subscription.getStudent().getId()
+//                        + "\tcourse_id: " + subscription.getCourse().getId()
+//                        + "\tsubscription_date: " + subscription.getSubscriptionDate());
+//            }
+
             for (Course course : courseList) {
-                Subscription subscription = session.get(Subscription.class, new SubscriptionKey(student.getId(), course.getId()));
-                System.out.println("student_id: " + subscription.getStudent().getId()
-                        + "\tcourse_id: " + subscription.getCourse().getId()
-                        + "\tsubscription_date: " + subscription.getSubscriptionDate());
+                Purchase purchase = session.get(Purchase.class, new PurchaseKey(student.getName(), course.getName()));
+                System.out.println("student_name: " + purchase.getStudentName()
+                            + "\tcourse_name: " + purchase.getCourseName()
+                            + "\tprice: " + purchase.getPrice()
+                            + "\tsubscription_date: " + purchase.getSubscriptionDate());
             }
         }
 
