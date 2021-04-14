@@ -16,6 +16,7 @@ public class Student {
     private List<Course> courses;
 
 
+    //Getters & Setters
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getId() {
