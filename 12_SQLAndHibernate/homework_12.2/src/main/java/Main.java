@@ -20,17 +20,6 @@ public class Main {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
 
-//        //отображаем список курсов для определенного студента
-//        Student student = session.get(Student.class, 1);
-//        List<Course> courseList = student.getCourses();
-//
-//        for (Course course : courseList) {
-//            Subscription subscription = session.get(Subscription.class, new Subscription.Key(student.getId(), course.getId()));
-//            System.out.println("Key: " + subscription.getId()
-//                    + "\tStudent_id: " + subscription.getStudentId()
-//                    + "\tCourse_id: " + subscription.getCourseId());
-//        }
-
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<Student> query = builder.createQuery(Student.class);
         Root<Student> root = query.from(Student.class);
@@ -38,19 +27,12 @@ public class Main {
         List<Student> studentList = session.createQuery(query).getResultList();
         for (Student student : studentList) {
             List<Course> courseList = student.getCourses();
-//            for (Course course : courseList) {
-//                Subscription subscription = session.get(Subscription.class, new SubscriptionKey(student.getId(), course.getId()));
-//                System.out.println("student_id: " + subscription.getStudent().getId()
-//                        + "\tcourse_id: " + subscription.getCourse().getId()
-//                        + "\tsubscription_date: " + subscription.getSubscriptionDate());
-//            }
 
             for (Course course : courseList) {
-                Purchase purchase = session.get(Purchase.class, new PurchaseKey(student.getName(), course.getName()));
-                System.out.println("student_name: " + purchase.getStudentName()
-                            + "\tcourse_name: " + purchase.getCourseName()
-                            + "\tprice: " + purchase.getPrice()
-                            + "\tsubscription_date: " + purchase.getSubscriptionDate());
+                Subscription subscription = session.get(Subscription.class, new SubscriptionKey(student, course));
+                System.out.println("student_id: " + subscription.getStudent().getId()
+                            + "\tcourse_id: " + subscription.getCourse().getId()
+                            + "\tsubscription_date: " + subscription.getSubscriptionDate());
             }
         }
 

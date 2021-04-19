@@ -1,47 +1,20 @@
-import javax.persistence.Column;
+import lombok.Data;
+
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
+@Embeddable
+@Data
 public class SubscriptionKey implements Serializable {
-    @Column(name = "student_id")
-    private int studentId;
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Student student;
 
-    @Column(name = "course_id")
-    private int courseId;
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Course course;
 
-    public SubscriptionKey(int studentId, int courseId) {
-        this.studentId = studentId;
-        this.courseId = courseId;
-    }
-
-
-    //Getters, Setters, Equals & HashCode
-    public int getStudentId() {
-        return studentId;
-    }
-
-    public void setStudentId(int studentId) {
-        this.studentId = studentId;
-    }
-
-    public int getCourseId() {
-        return courseId;
-    }
-
-    public void setCourseId(int courseId) {
-        this.courseId = courseId;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        SubscriptionKey subscriptionKey = (SubscriptionKey) o;
-        return studentId == subscriptionKey.getStudentId() && courseId == subscriptionKey.getCourseId();
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(studentId, courseId);
+    public SubscriptionKey(Student student, Course course) {
+        this.student = student;
+        this.course = course;
     }
 }
