@@ -1,51 +1,29 @@
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "Teachers")
 public class Teacher {
-    private int id;
-
-    private String name;
-
-    private int salary;
-
-    private int age;
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
+    @Getter
+    @Setter
+    private int id;
 
     @Column(name = "name")
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
+    @Getter
+    @Setter
+    private String name;
 
     @Column(name = "salary")
-    public int getSalary() {
-        return salary;
-    }
-
-    public void setSalary(int salary) {
-        this.salary = salary;
-    }
+    @Getter
+    @Setter
+    private int salary;
 
     @Column(name = "age")
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
+    @Getter
+    @Setter
+    private int age;
 }

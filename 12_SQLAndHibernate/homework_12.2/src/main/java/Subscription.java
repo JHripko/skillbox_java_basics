@@ -28,5 +28,4 @@ public class Subscription {
     @Getter
     @Setter
     private Date subscriptionDate;
-
 }
