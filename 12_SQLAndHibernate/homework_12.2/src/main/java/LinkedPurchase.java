@@ -22,10 +22,4 @@ public class LinkedPurchase {
     @Getter
     @Setter
     private Course course;
-
-    public LinkedPurchase() {}
-
-    public LinkedPurchase(Student student, Course course) {
-        this.id = new LinkedPurchaseKey(student, course);
-    }
 }

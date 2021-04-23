@@ -7,16 +7,14 @@ import java.util.Objects;
 @Embeddable
 @Data
 public class LinkedPurchaseKey implements Serializable {
-    @ManyToOne
-    @JoinColumn(name = "student_id", nullable = false, columnDefinition = "INT(11) UNSIGNED")
-    private Student student;
+    @Column(name = "student_id", nullable = false, columnDefinition = "INT(11) UNSIGNED")
+    private int studentId;
 
-    @ManyToOne
-    @JoinColumn(name = "course_id", nullable = false, columnDefinition = "INT(11) UNSIGNED")
-    private Course course;
+    @Column(name = "course_id", nullable = false, columnDefinition = "INT(11) UNSIGNED")
+    private int courseId;
 
-    public LinkedPurchaseKey(Student student, Course course) {
-        this.student = student;
-        this.course = course;
+    public LinkedPurchaseKey(int studentId, int courseId) {
+        this.studentId = studentId;
+        this.courseId = courseId;
     }
 }
