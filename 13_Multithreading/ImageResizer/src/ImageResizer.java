@@ -7,17 +7,20 @@ public class ImageResizer implements Runnable{
     private int newWidth;
     private String dstFolder;
     private long start;
+    private int id;
 
-    public ImageResizer(File[] files, int newWidth, String dstFolder, long start) {
+    public ImageResizer(File[] files, int newWidth, String dstFolder, long start, int id) {
         this.files = files;
         this.newWidth = newWidth;
         this.dstFolder = dstFolder;
         this.start = start;
+        this.id = id;
     }
 
     @Override
     public void run() {
         try {
+            System.out.println("start thread " + id);
             for (File file : files) {
                 BufferedImage image = ImageIO.read(file);
                 if (image == null) {
@@ -48,6 +51,6 @@ public class ImageResizer implements Runnable{
             ex.printStackTrace();
         }
 
-        System.out.println("Finished after start: " + (System.currentTimeMillis() - start + " ms"));
+        System.out.println("Thread " + id + " finished after start: " + (System.currentTimeMillis() - start + " ms"));
     }
 }
