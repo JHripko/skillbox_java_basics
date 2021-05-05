@@ -1,5 +1,3 @@
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
 import java.io.File;
 
 public class Main {
@@ -22,6 +20,7 @@ public class Main {
         System.out.println("cores count: " + coresCount);
 
         //часть массива
+        assert files != null;
         int part = files.length / coresCount;
 
         //в цикле создаем кол-во потоков в соотв. с кол-вом доступных ядер процессора
@@ -36,6 +35,7 @@ public class Main {
             files = files2;
         }
 
+        //вызов последнего потока
         ImageResizer resizer = new ImageResizer(files, newWidth, dstFolder, start, coresCount);
         new Thread(resizer).start();
     }
