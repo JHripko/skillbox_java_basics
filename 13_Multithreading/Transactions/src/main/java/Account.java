@@ -1,9 +1,9 @@
 public class Account {
 
-    private long money;
+    private volatile long money;
     private String accNumber;
 
-    private boolean isActive = true;        //состояние аккаунта (активен или блокирован)
+    private volatile boolean isActive = true;        //состояние аккаунта (активен или блокирован)
 
     public long getMoney() {
         return money;

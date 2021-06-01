@@ -7,6 +7,13 @@ public class Main {
         Scanner in = new Scanner(System.in);
         int count = in.nextInt();
 
+        //передаем кол-во генерируемых аккаунтов
         bank.accountGenerator(count);
+
+        System.out.print("\nСколько итераций выполнить? Кол-во итераций: ");
+        int iterations = in.nextInt();
+
+        //передаем кол-во итераций по транзакциям между аккаунтами
+        bank.getTask(iterations);
     }
 }
