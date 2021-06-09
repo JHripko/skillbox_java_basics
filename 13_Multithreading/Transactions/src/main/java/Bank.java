@@ -21,32 +21,12 @@ public class Bank {
             Account fromAcc = accounts.get(fromAccountNum);
             Account toAcc = accounts.get(toAccountNum);
 
-            System.out.println("\n=== Перевод средств ===" +
-                    "\nСчет отправителя: " + fromAccountNum + " (" + getBalance(fromAccountNum) + " RUB)" +
-                    "\nСчет получателя: " + toAccountNum + " (" + getBalance(toAccountNum) + " RUB)" +
-                    "\nСумма перевода: " + amount + " RUB");
+            //инициализаия объекта класса проверки перевода
+            TransferChecker transferChecker = new TransferChecker(fromAcc, toAcc, amount);
 
-            //проверяем не заблокированы ли аккаунты
-            if (isActiveCheck(fromAcc, toAcc)) {
-                //проверка не превышает ли сумма перевода сумму на счете отправителя
-                if (fromAcc.getMoney() >= amount) {
-                    //проверка операции свыше 50000
-                    if (amount >= 50000) {
-                        fromAcc.setActive(isFraud());
-                        toAcc.setActive(isFraud());
-                        if (isActiveCheck(fromAcc, toAcc)) {
-                            getTransfer(fromAcc, toAcc, amount);
-                        } else {
-                            System.out.println("*** Anti-Fraud: Подозрительная операция. Счета заблокированы! ***");
-                        }
-                    } else {
-                        getTransfer(fromAcc, toAcc, amount);
-                    }
-                } else {
-                    System.out.println("*** Операция не выполнена: сумма списание больше чем сумма на счете! ***");
-                }
-            } else {
-                System.out.println("*** Операция не выполнена: один или оба счета заблокированы! ***");
+            synchronized (TransferChecker.class) {
+                //вызов метода проверки счетов перед переводом
+                transferChecker.checker();
             }
         }
     }
@@ -63,7 +43,7 @@ public class Bank {
     public long getSumAllAccounts() {
         long balance = 0;
         for (Map.Entry<String, Account> accountEntry : accounts.entrySet()) {
-            balance += accountEntry.getValue().getMoney();
+            balance += getBalance(accountEntry.getValue().getAccNumber());
         }
 
         return balance;
@@ -96,15 +76,6 @@ public class Bank {
         System.out.println("\nСумма денег на всех аккаунтах: " + getSumAllAccounts() + " RUB");
     }
 
-    //перевод средств
-    public void getTransfer(Account fromAcc, Account toAcc, long amount) {
-        fromAcc.setMoney(fromAcc.getMoney() - amount);
-        toAcc.setMoney(toAcc.getMoney() + amount);
-        System.out.println("\n*** Операция выполнена! ***" +
-                "\nСчет " + fromAcc.getAccNumber() + " остаток: " + getBalance(fromAcc.getAccNumber()) + " RUB" +
-                "\nСчет " + toAcc.getAccNumber() + " остаток: " + getBalance(toAcc.getAccNumber()) + " RUB");
-    }
-
     //получение случайного перевода между аккаунтами
     public synchronized void getRandomTransaction() throws InterruptedException {
         Random random = new Random();
@@ -134,10 +105,5 @@ public class Bank {
         }
 
         threads.forEach(Thread::start);
-    }
-
-    //проверка не заблокирован ли один из аккаунтов
-    public boolean isActiveCheck(Account fromAcc, Account toAcc) {
-        return (fromAcc.isActive() && toAcc.isActive());
     }
 }
