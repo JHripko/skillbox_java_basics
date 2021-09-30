@@ -10,7 +10,7 @@ public class Main {
 //
 //        siteMap.forEach(System.out::println);
 
-        LinkParser linkParser = new LinkParser();
+        LinkParser linkParser = new LinkParser(url);
 
         HashSet<String> links = new HashSet(linkParser.getLinks(url));
 
