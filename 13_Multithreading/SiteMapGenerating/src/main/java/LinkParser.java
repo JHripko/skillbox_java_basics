@@ -1,38 +1,27 @@
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 
 import java.io.IOException;
-import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+import static java.lang.Thread.sleep;
 
 public class LinkParser {
-    String baseUrl;
-
-    public LinkParser(String baseUrl) {
-        this.baseUrl = baseUrl;
-    }
-
-    public LinkFilter linkFilter = new LinkFilter();
 
     //получаем список ссылок по текущему URL
-    public synchronized HashSet<String> getLinks(String url) throws IOException, InterruptedException {
-        //задаем задержку
-        Thread.sleep(500);
-        //создаем список в который будут помещены уникальные ссылки
-        HashSet<String> linksSet = new HashSet<>();
-        Document document = Jsoup.connect(url).get();
-        //получаем все элементы, содержащие атрибут href
-        Elements elements = document.select("a");
+    public Set<String> getLinks(String url) throws IOException, InterruptedException {
+        sleep(100);
+        Document document = Jsoup.connect(url).ignoreHttpErrors(true).maxBodySize(0).get();
 
-        for (Element element : elements) {
-            String link = element.absUrl("href");
-
-            if (linkFilter.filter(baseUrl, link)) {
-                linksSet.add(link);
-            }
-        }
-
-        return linksSet;
+        return document.select("a")
+                .stream()
+                .map(el -> el.attr("abs:href")) //получаем url страниц
+                .filter(el ->
+                        el.contains(Main.url) &&          //фильтруем по домену
+                                !el.contains("#") &&      //фильтруем ссылки на внутренние элементы страницы
+                                el.endsWith("/") &&       //фильтруем на ссылки не оканчивающиеся на слеш
+                                !SiteMapGenerator.uniqueLinks.contains(el)  //проверяем уникальность ссылки
+                ).collect(Collectors.toSet());
     }
 }

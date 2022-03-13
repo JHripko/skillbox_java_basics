@@ -1,6 +1,5 @@
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.Set;
 
 public class SiteNode {
     public String url;
@@ -9,14 +8,15 @@ public class SiteNode {
         this.url = url;
     }
 
-    public SiteNode(){}
-
     public String getValue() {
         return url;
     }
 
-    public ArrayList<SiteNode> getChildren() {
+    public Set<String> getChildren() throws IOException, InterruptedException {
+        LinkParser linkParser = new LinkParser();
+        Set<String> childLinks = linkParser.getLinks(url);
+        SiteMapGenerator.uniqueLinks.addAll(childLinks);
 
-        return null;
+        return childLinks;
     }
 }

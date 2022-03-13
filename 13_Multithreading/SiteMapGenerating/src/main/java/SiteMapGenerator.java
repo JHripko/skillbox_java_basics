@@ -1,35 +1,35 @@
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.RecursiveTask;
 
-public class SiteMapGenerator extends RecursiveTask<HashSet<String>> {
-    private SiteNode siteNode;
+public class SiteMapGenerator extends RecursiveTask<Set<String>> {
+    private final SiteNode siteNode;
+    public static volatile HashSet<String> uniqueLinks = new HashSet<>();  //Список уникальных ссылок
 
     public SiteMapGenerator(SiteNode siteNode) {
         this.siteNode = siteNode;
     }
 
     @Override
-    protected HashSet<String> compute() {
-//        HashSet<String> siteMap = new HashSet<>();
-//        siteMap.add(siteNode.getValue());
-//        List<SiteMapGenerator> taskList = new ArrayList<>();
-//
-//        try {
-//            for (String child : siteNode.getChildren()) {
-//                SiteMapGenerator task = new SiteMapGenerator(new SiteNode(child));
-//                task.fork();
-//                taskList.add(task);
-//            }
-//
-//            for (SiteMapGenerator task : taskList) {
-//                siteMap.addAll(task.join());
-//            }
-//        } catch (IOException | InterruptedException e) {
-//            e.printStackTrace();
-//        }
-        return null;
+    protected Set<String> compute() {
+        Set<String> siteMap = new LinkedHashSet<>();    //Карта сайта
+        List<SiteMapGenerator> taskList = new LinkedList<>();
+
+        try {
+            siteMap.add(siteNode.getValue());
+
+            for (String child : siteNode.getChildren()) {
+                SiteMapGenerator task = new SiteMapGenerator(new SiteNode(child));
+                task.fork();
+                taskList.add(task);
+            }
+
+            for (SiteMapGenerator task : taskList) {
+                siteMap.addAll(task.join());
+            }
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+        }
+        return siteMap;
     }
 }
