@@ -4,10 +4,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 public class FileGenerator {
     public Set<String> siteMap;
@@ -18,10 +15,13 @@ public class FileGenerator {
 
     public void getFile() throws IOException {
         SiteMapFormatter siteMapFormatter = new SiteMapFormatter(siteMap);
+        //создаем файл
         Path file = Files.createFile(Paths.get("file/sitemap.txt"));
 
-        Set<String> lines = new TreeSet<>(siteMapFormatter.getFormattedSet());
+        //форматирование списка ссылок (с учетом вложенности)
+        Set<String> lines = new LinkedHashSet<>(siteMapFormatter.getFormattedSet());
 
+        //записываем строки в файл
         Files.write(file, lines, StandardCharsets.UTF_8, StandardOpenOption.APPEND);
 
         lines.forEach(System.out::println);

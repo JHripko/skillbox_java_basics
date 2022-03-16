@@ -13,6 +13,7 @@ public class SiteNode {
     }
 
     public Set<String> getChildren() throws IOException, InterruptedException {
+        //парсинг дочерних ссылок
         LinkParser linkParser = new LinkParser();
         Set<String> childLinks = linkParser.getLinks(url);
         SiteMapGenerator.uniqueLinks.addAll(childLinks);
