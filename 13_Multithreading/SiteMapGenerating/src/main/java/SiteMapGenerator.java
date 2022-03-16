@@ -12,7 +12,7 @@ public class SiteMapGenerator extends RecursiveTask<Set<String>> {
 
     @Override
     protected Set<String> compute() {
-        Set<String> siteMap = new LinkedHashSet<>();    //Карта сайта
+        Set<String> siteMap = new TreeSet<>();    //Карта сайта
         List<SiteMapGenerator> taskList = new LinkedList<>();
 
         try {
