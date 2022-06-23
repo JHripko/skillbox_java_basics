@@ -3,7 +3,7 @@ package response;
 public class Task {
     private int id;                     //id задачи
     private String taskName;            //название задачи
-    private boolean isDone = false;     //состояние задачи (выполнено/невыполнено)
+    private boolean isDone = false;     //состояние задачи (выполнено/не выполнено)
 
     public int getId() {
         return id;
@@ -21,7 +21,7 @@ public class Task {
         this.taskName = taskName;
     }
 
-    public boolean isDone() {
+    public boolean getDone() {
         return isDone;
     }
 
