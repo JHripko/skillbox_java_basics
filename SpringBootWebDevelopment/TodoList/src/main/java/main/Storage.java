@@ -30,6 +30,12 @@ public class Storage {
        return tasks.get(id);
     }
 
+    //удалить все задачи
+    public static List<Task> deleteAllTasks() {
+        tasks.clear();
+        return new ArrayList<>(tasks.values());
+    }
+
     //удалить задачу
     public static void deleteTask(int id) {
         tasks.remove(id);

@@ -37,6 +37,12 @@ public class TaskController {
         return HttpStatus.OK;
     }
 
+    //удалить все задачи
+    @DeleteMapping("/tasks/")
+    public List<Task> deleteAll() {
+        return Storage.deleteAllTasks();
+    }
+
     //редактировать статус задачи
     @PutMapping("/tasks/{id}")
     public Task editStatus(@PathVariable int id) {
