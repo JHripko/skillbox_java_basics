@@ -1,6 +1,14 @@
-package response;
+package main.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Task {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;                     //id задачи
     private String taskName;            //название задачи
     private boolean isDone = false;     //состояние задачи (выполнено/не выполнено)
