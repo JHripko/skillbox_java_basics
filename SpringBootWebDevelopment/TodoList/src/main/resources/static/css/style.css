@@ -1,0 +1,8 @@
+.task-form {
+    justify-content: center;
+}
+
+.tasks-table {
+    display: flex;
+    justify-content: center;
+}

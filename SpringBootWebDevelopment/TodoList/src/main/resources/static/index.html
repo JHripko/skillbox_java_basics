@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>ToDo App</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+
+    <script type="application/javascript" src="js/bootstrap-js/bootstrap.js"></script>
+    <script type="application/javascript" src="js/jquery-3.6.0.min.js"></script>
+    <script type="application/javascript" src="js/main.js"></script>
+</head>
+<body>
+    <div class="container text-center">
+        <h3>Список задач</h3>
+
+        <form class="input-group mb-3 text-center task-form">
+            <input type="text" class="form-control-sm" placeholder="Новая задача">
+            <button class="btn btn-success add-task" type="button">Добавить</button>
+        </form>
+
+    </div>
+
+    <div class="container container text-center tasks-table">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Задача</th>
+                    <th>Выполнено</th>
+                    <th> </th>
+                    <th> </th>
+                </tr>
+            </thead>
+            <tbody id="task-list">
+<!--                <tr>-->
+<!--                    <th th:attr="data-id=${task.id}" th:text="${task.id}"></th>-->
+<!--                    <td th:text="${task.taskName}"></td>-->
+<!--                    <td><input class="form-check-input" type="checkbox" th:attr="value=${task.done}"></td>-->
+<!--                    <td><button class="btn btn-primary" th:attr="task-id=${task.id}">ред.</button></td>-->
+<!--                    <td><button class="btn btn-danger" th:attr="task-id=${task.id}">удалить</button></td>-->
+<!--                </tr>-->
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
