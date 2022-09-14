@@ -68,7 +68,7 @@ public class TaskController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
         Task task = optionalTask.get();
-        task.setDone(true);
+        task.setDone(!task.getDone());
         taskRepository.save(task);
         return ResponseEntity.status(HttpStatus.OK).body(task);
     }

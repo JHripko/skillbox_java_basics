@@ -1,8 +1,3 @@
-.task-form {
-    justify-content: center;
-}
-
-.tasks-table {
-    display: flex;
-    justify-content: center;
+#delete-all {
+    margin-left: 70px;
 }
