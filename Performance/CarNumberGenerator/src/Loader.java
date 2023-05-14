@@ -1,5 +1,6 @@
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
+import java.util.Arrays;
 
 public class Loader {
 
@@ -9,11 +10,12 @@ public class Loader {
         char[] letters = {'У', 'К', 'Е', 'Н', 'Х', 'В', 'А', 'Р', 'О', 'С', 'М', 'Т'};
 
         for (int regionCode = 1; regionCode < 100; regionCode++) {
+            //сразу считаем как будет выглядеть код региона
+            String regionCodeStr = padNumber(regionCode, 3);
             //создаем файл для каждого региона
-            PrintWriter writer = new PrintWriter("res/numbers_"
-                    + padNumber(regionCode, 3) + ".txt");
+            PrintWriter writer = new PrintWriter("res/numbers_" + regionCodeStr + ".txt");
             //вызываем в отдельном потоке генератор номеров
-            Generator generator = new Generator(writer, regionCode, letters);
+            Generator generator = new Generator(writer, regionCodeStr, letters);
             generator.start();
         }
 
@@ -24,7 +26,8 @@ public class Loader {
         String numberStr = Integer.toString(number);
         int padSize = numberLength - numberStr.length();
         for (int i = 0; i < padSize; i++) {
-            numberStr = '0' + numberStr;
+            //numberStr = '0' + numberStr;
+            numberStr = numberStr.concat("0").concat(numberStr);
         }
 
         return numberStr;
@@ -32,7 +35,7 @@ public class Loader {
 
     //генератор номеров
     public static class Generator extends Thread {
-        public Generator(PrintWriter writer, int regionCode, char[] letters) {
+        public Generator(PrintWriter writer, String regionCode, char[] letters) {
             StringBuilder carNumber = new StringBuilder();
 
             for (int number = 1; number < 1000; number++) {
@@ -43,7 +46,7 @@ public class Loader {
                                     .append(padNumber(number, 3))
                                     .append(secondLetter)
                                     .append(thirdLetter)
-                                    .append(padNumber(regionCode, 3))
+                                    .append(regionCode)
                                     .append("\n");
                         }
                     }
